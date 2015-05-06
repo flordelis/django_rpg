@@ -16,7 +16,9 @@ A Django project for managing Dungeons
 ### Initialize Application
 ```
 python manage.py makemigrations
+
 python manage.py migrate
+
 python manage.py createsuperuser
 ```
 
