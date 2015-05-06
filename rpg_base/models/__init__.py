@@ -24,15 +24,7 @@ class CharacterTemplateInEncounter(models.Model):
     num = models.PositiveIntegerField(default=1)
 
 
-class CharacterInEncounter(models.Model):
-    """
-    Characters have a rolled Initiative specific to an encounter, as well as
-    Hit Points.
-    """
-    character = models.ForeignKey(Character)
-    encounter = models.ForeignKey(Encounter)
-    hp_current = models.IntegerField()
-    initiative = models.PositiveIntegerField
+
 
 
 class CharacterIntroducesEncounter(models.Model):

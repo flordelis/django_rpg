@@ -23,7 +23,23 @@ class Encounter(models.Model):
             characters = template.create_characters(num=num, encounter.campaign)
 
             for character in characters:
-                Charact
+                # TODO
+                initiative = 0
+                CharacterInEncounter.objects.create(character=character,
+                                                    encounter=encounter,
+                                                    hp_current=character.hp,
+                                                    initiative=initiativet)
 
         self.is_running = True
         self.save()
+
+
+class CharacterInEncounter(models.Model):
+    """
+    Characters have a rolled Initiative specific to an encounter, as well as
+    Hit Points.
+    """
+    character = models.ForeignKey("Character")
+    encounter = models.ForeignKey(Encounter)
+    hp_current = models.IntegerField()
+    initiative = models.PositiveIntegerField
