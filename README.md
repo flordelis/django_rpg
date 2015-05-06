@@ -29,17 +29,17 @@ python manage.py runserver
 ```
 
 ## Feature List
-Campaign
+* Campaign
 
 ### Character Management
-Character
-Race
-Class
-Character Template
+* Character
+* Race
+* Class
+* Character Template
 
 ### Encounter Management
-Encounter
+* Encounter
 
 ### World Building
-Location
+* Location
 
