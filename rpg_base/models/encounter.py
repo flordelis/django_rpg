@@ -20,7 +20,7 @@ class Encounter(models.Model):
             template = row.character_template
             encounter = row.encounter
 
-            characters = template.create_characters(num=num, encounter.campaign)
+            characters = template.create_characters(num=num, campaign=encounter.campaign)
 
             for character in characters:
                 # TODO
