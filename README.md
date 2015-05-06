@@ -1,5 +1,5 @@
 # Django RPG
-A Django project for managing Dungeons
+A Django project for managing Dungeons and Dragons campaigns.
 
 ## Setup
 **Overview**
