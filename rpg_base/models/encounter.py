@@ -28,7 +28,7 @@ class Encounter(models.Model):
                 CharacterInEncounter.objects.create(character=character,
                                                     encounter=encounter,
                                                     hp_current=character.hp,
-                                                    initiative=initiativet)
+                                                    initiative=initiative)
 
         self.is_running = True
         self.save()
