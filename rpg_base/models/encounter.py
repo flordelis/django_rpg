@@ -15,8 +15,15 @@ class Encounter(models.Model):
         return self.name
 
     def start(self):
-        for template in self.charactertemplateinencounter_set.all():
-            template
+        for row in self.charactertemplateinencounter_set.all():
+            num = row.num
+            template = row.character_template
+            encounter = row.encounter
+
+            characters = template.create_characters(num=num, encounter.campaign)
+
+            for character in characters:
+                Charact
 
         self.is_running = True
         self.save()

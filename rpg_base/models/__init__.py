@@ -51,7 +51,7 @@ class CharacterLocationRelationship(models.Model):
     """
     character = models.ForeignKey(Character)
     location = models.ForeignKey(Location)
-    desciption = models.CharField(max_length=250, null=True, blank=True, default="")
+    description = models.CharField(max_length=250, null=True, blank=True, default="")
 
 
 class EncounterLocation(models.Model):
