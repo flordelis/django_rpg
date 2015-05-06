@@ -2,8 +2,8 @@ from django.contrib import admin
 import models
 
 
-class CharacterAtLocationTab(admin.TabularInline):
-    model = models.CharactersAtLocation
+class CharacterLocationRelationshipTab(admin.TabularInline):
+    model = models.CharacterLocationRelationship
     extra = 1
 
 
@@ -24,7 +24,7 @@ class CharacterAdmin(admin.ModelAdmin):
     list_display = ('name', 'race', 'campaign', )
     inlines = (
         CharacterClassInline,
-        CharacterAtLocationTab,
+        CharacterLocationRelationshipTab,
     )
 
 
@@ -66,7 +66,9 @@ class EncounterAdmin(admin.ModelAdmin):
 @admin.register(models.Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'description',)
-    inlines = (CharacterAtLocationTab,)
+    inlines = (
+        CharacterLocationRelationshipTab,
+    )
 
 
 class HitDieTab(admin.TabularInline):
