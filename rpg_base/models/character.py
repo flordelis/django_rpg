@@ -43,8 +43,6 @@ class CharacterTemplate(models.Model):
             The number of characters to generate.
         :param name:
             The name applied to all generated characters.
-        :param initiative_modifier:
-            The initiative modifier that each character will apply to their rolls
         :param player_owned:
             Whether or not this character belongs to a player
         """
