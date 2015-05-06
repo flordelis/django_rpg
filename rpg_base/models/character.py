@@ -33,7 +33,20 @@ class CharacterTemplate(models.Model):
     class Meta:
         app_label = "rpg_base"
 
-    def create_characters(self, num=1, name='', initiative_modifier=0, player_owned=False):
+    def create_characters(self, campaign, num=1, name='', initiative_modifier=0, player_owned=False):
+        """
+
+        :param campaign:
+            Required. The campaign that generated characters will belong to
+        :param num:
+            The number of characters to generate.
+        :param name:
+            The name applied to all generated characters.
+        :param initiative_modifier:
+            The initiative modifier that each character will apply to their rolls
+        :param player_owned:
+            Whether or not this character belongs to a player
+        """
         # Create a set of characters.
         new_characters = []
         for i in range(num):
@@ -48,8 +61,9 @@ class CharacterTemplate(models.Model):
             for hd in self.hitdie_set.all():
                 hp += hd.roll()
 
-            new_characters.append(Character.objects.create(name=name, initiative_modifier=initiative_modifier,
-                                                           hp=hp, race=self.race, player_owned=player_owned))
+            new_characters.append(Character.objects.create(campaign=campaign, name=name,
+                                                           initiative_modifier=initiative_modifier, hp=hp,
+                                                           race=self.race, player_owned=player_owned))
         return new_characters
 
     def __unicode__(self):
