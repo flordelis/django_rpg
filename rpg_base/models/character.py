@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from random import randint
 
@@ -27,7 +28,7 @@ class CharacterTemplate(models.Model):
     name = models.CharField(max_length=50)
     cr = models.PositiveIntegerField(blank=True, null=True, default=None)
     race = models.ForeignKey("Race")
-    user = models.ForeignKey("User", blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
 
     class Meta:
         app_label = "rpg_base"
