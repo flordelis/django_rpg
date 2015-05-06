@@ -15,6 +15,9 @@ class Encounter(models.Model):
         return self.name
 
     def start(self):
+        """
+        Sets `is_running` to True, and initiative and NPCs.
+        """
         for row in self.charactertemplateinencounter_set.all():
             num = row.num
             template = row.character_template
@@ -23,15 +26,18 @@ class Encounter(models.Model):
             characters = template.create_characters(encounter.campaign, num=num)
 
             for character in characters:
-                # TODO
-                initiative = 0
                 CharacterInEncounter.objects.create(character=character,
                                                     encounter=encounter,
                                                     hp_current=character.hp,
-                                                    initiative=initiative)
+                                                    initiative=0)
+
+        # TODO Roll everyone's initiative.
 
         self.is_running = True
         self.save()
+
+    def end(self):
+        pass
 
 
 class CharacterInEncounter(models.Model):

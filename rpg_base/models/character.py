@@ -27,13 +27,14 @@ class Race(models.Model):
 class CharacterTemplate(models.Model):
     name = models.CharField(max_length=50)
     cr = models.PositiveIntegerField(blank=True, null=True, default=None)
+    initiative_modifier = models.IntegerField(blank=True, null=True, default=0)
     race = models.ForeignKey("Race")
     user = models.ForeignKey(User, blank=True, null=True)
 
     class Meta:
         app_label = "rpg_base"
 
-    def create_characters(self, campaign, num=1, name='', initiative_modifier=0, player_owned=False):
+    def create_characters(self, campaign, num=1, name='', player_owned=False):
         """
 
         :param campaign:
@@ -62,7 +63,7 @@ class CharacterTemplate(models.Model):
                 hp += hd.roll()
 
             new_characters.append(Character.objects.create(campaign=campaign, name=name,
-                                                           initiative_modifier=initiative_modifier, hp=hp,
+                                                           initiative_modifier=self.initiative_modifier, hp=hp,
                                                            race=self.race, player_owned=player_owned))
         return new_characters
 
