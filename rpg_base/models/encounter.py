@@ -8,6 +8,9 @@ class Encounter(models.Model):
     is_running = models.BooleanField(default=False)
     round = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        app_label = "rpg_base"
+
     def __unicode__(self):
         return self.name
 

@@ -2,11 +2,35 @@ from django.db import models
 from random import randint
 
 
+class DndClass(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        app_label = "rpg_base"
+
+    def __unicode__(self):
+        return self.name
+
+
+class Race(models.Model):
+    name = models.CharField(max_length=25)
+    parent_race = models.ForeignKey("Race", blank=True, null=True, default=None)
+
+    class Meta:
+        app_label = "rpg_base"
+
+    def __unicode__(self):
+        return self.name
+
+
 class CharacterTemplate(models.Model):
     name = models.CharField(max_length=50)
     cr = models.PositiveIntegerField(blank=True, null=True, default=None)
     race = models.ForeignKey("Race")
     user = models.ForeignKey("User", blank=True, null=True)
+
+    class Meta:
+        app_label = "rpg_base"
 
     def create_characters(self, num=1, name='', initiative_modifier=0, player_owned=False):
         # Create a set of characters.
@@ -41,6 +65,9 @@ class Character(models.Model):
     cr = models.PositiveIntegerField(blank=True, null=True, default=None)
     campaign = models.ForeignKey("Campaign")
 
+    class Meta:
+        app_label = "rpg_base"
+
     def __unicode__(self):
         return self.name
 
@@ -57,6 +84,9 @@ class HitDie(models.Model):
     die = models.PositiveIntegerField(choices=HIT_DIE_CHOICES)
     mod = models.IntegerField(default=0)
     character_template = models.ForeignKey(CharacterTemplate)
+
+    class Meta:
+        app_label = "rpg_base"
 
     def roll(self):
         roll = 0
