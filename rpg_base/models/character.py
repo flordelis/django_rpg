@@ -26,7 +26,7 @@ class Race(models.Model):
 
 class CharacterTemplate(models.Model):
     name = models.CharField(max_length=50)
-    cr = models.PositiveIntegerField(blank=True, null=True, default=None)
+    cr = models.FloatField(blank=True, null=True, default=0)
     initiative_modifier = models.IntegerField(blank=True, null=True, default=0)
     race = models.ForeignKey("Race")
     user = models.ForeignKey(User, blank=True, null=True)
@@ -70,13 +70,24 @@ class CharacterTemplate(models.Model):
 
 
 class Character(models.Model):
+    CHARACTER_TYPE = (
+        ('PL', 'Player'),
+        ('EN', 'Enemy'),
+        ('AL', 'Ally'),
+        ('NT', 'Neutral'),
+        ('EO', 'Encounter Only'),
+    )
+
     name = models.CharField(max_length=50)
-    initiative_modifier = models.IntegerField()
-    hp = models.PositiveIntegerField()
+
     race = models.ForeignKey("Race")
-    template = models.ForeignKey("CharacterTemplate", null=True, blank=True)
-    player_owned = models.BooleanField(default=False)
-    cr = models.PositiveIntegerField(blank=True, null=True, default=None)
+    template = models.ForeignKey("CharacterTemplate", null=True, blank=True, default=None)
+
+    cr = models.FloatField(blank=True, null=True, default=0)
+    hp = models.PositiveIntegerField()
+    initiative_modifier = models.IntegerField()
+
+    type = models.CharField(choices=CHARACTER_TYPE, default=False, max_length=2)
     campaign = models.ForeignKey("Campaign")
 
     class Meta:

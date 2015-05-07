@@ -4,7 +4,7 @@ import models
 
 class CharacterLocationRelationshipTab(admin.TabularInline):
     model = models.CharacterLocationRelationship
-    extra = 1
+    extra = 0
 
 
 @admin.register(models.Campaign)
@@ -16,7 +16,7 @@ class CampaignAdmin(admin.ModelAdmin):
 class CharacterClassInline(admin.TabularInline):
     fields = ('dnd_class', 'levels')
     model = models.CharacterClass
-    extra = 1
+    extra = 0
 
 
 @admin.register(models.Character)
@@ -40,17 +40,17 @@ class DndClassAdmin(admin.ModelAdmin):
 
 class CharactersInEncounterTab(admin.TabularInline):
     model = models.CharacterInEncounter
-    extra = 1
+    extra = 0
 
 
 class CharacterIntroducesEncounterTab(admin.TabularInline):
     model = models.CharacterIntroducesEncounter
-    extra = 1
+    extra = 0
 
 
 class EncounterLocationTab(admin.TabularInline):
     model = models.EncounterLocation
-    extra = 1
+    extra = 0
 
 
 @admin.register(models.Encounter)
@@ -73,7 +73,7 @@ class LocationAdmin(admin.ModelAdmin):
 
 class HitDieTab(admin.TabularInline):
     model = models.HitDie
-    extra = 1
+    extra = 0
 
 @admin.register(models.CharacterTemplate)
 class CharacterTemplateAdmin(admin.ModelAdmin):
