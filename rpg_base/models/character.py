@@ -105,7 +105,7 @@ class HitDie(models.Model):
         (10, "10"),
         (12, "12"),
     )
-    num = models.IntegerField(default=1)
+    num = models.PositiveIntegerField(default=1)
     die = models.PositiveIntegerField(choices=HIT_DIE_CHOICES)
     mod = models.IntegerField(default=0)
     character_template = models.ForeignKey(CharacterTemplate)
@@ -118,7 +118,9 @@ class HitDie(models.Model):
         for i in range(self.num):
             roll += randint(1, self.die)
 
-        return roll + self.mod
+        roll += self.mod
+
+        return roll if roll > 0 else 1
 
     def __unicode__(self):
         return "%sd%s + %s" % (self.num, self.die, self.mod)
