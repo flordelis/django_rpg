@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from rpg_base.models.character import *
-from rpg_base.models.campaign import Campaign
+from rpg_base.models import *
 
 
 class DndClassTestCase(TestCase):
