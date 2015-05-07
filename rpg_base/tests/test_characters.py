@@ -37,11 +37,15 @@ class CharacterTemplateTestCase(TestCase):
         # no arguments provided to create_character() (besides campaign)
         characters = char_template.create_characters(campaign=self.campaign1)
         self.assertEqual(1, len(characters))
+        self.assertEqual(characters[0].name, 'BrentTest')
 
         # 100 characters, because lol
         characters = char_template.create_characters(campaign=self.campaign1,
                                                      num=100)
         self.assertEqual(100, len(characters))
+        for i in range(len(characters)):
+            self.assertEqual(characters[i].name, 'BrentTest %s' % (i + 1))
+
 
 class HitDieTestCase(TestCase):
 

@@ -34,7 +34,7 @@ class CharacterTemplate(models.Model):
     class Meta:
         app_label = "rpg_base"
 
-    def create_characters(self, campaign, num=1, name='', player_owned=False):
+    def create_characters(self, campaign, num=1, name='', type='EN'):
         """
 
         :param campaign:
@@ -43,26 +43,26 @@ class CharacterTemplate(models.Model):
             The number of characters to generate.
         :param name:
             The name applied to all generated characters.
-        :param player_owned:
-            Whether or not this character belongs to a player
+        :param type:
+            The type of character.
         """
+        # TODO Check that the Character type is valid.
+
+        name = self.name if name is '' else name
+
         # Create a set of characters.
         new_characters = []
         for i in range(num):
-            # Unless a name is given, use the template name.
-            name = self.name if name is '' else name
-
-            # If there's more than one we add the index value.
-            name += ' %s' % i if num > 1 else ''
+            iname  = name + (' %s' % (i + 1) if num > 1 else '')
 
             # Roll all Hit Die for this template.
             hp = 0
             for hd in self.hitdie_set.all():
                 hp += hd.roll()
 
-            new_characters.append(Character.objects.create(campaign=campaign, name=name,
+            new_characters.append(Character.objects.create(campaign=campaign, name=iname,
                                                            initiative_modifier=self.initiative_modifier, hp=hp,
-                                                           race=self.race, player_owned=player_owned))
+                                                           race=self.race, type=type))
         return new_characters
 
     def __unicode__(self):
