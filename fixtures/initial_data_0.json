@@ -1,0 +1,328 @@
+[
+{
+  "fields": {
+    "model": "logentry",
+    "app_label": "admin"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 1
+},
+{
+  "fields": {
+    "model": "permission",
+    "app_label": "auth"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 2
+},
+{
+  "fields": {
+    "model": "group",
+    "app_label": "auth"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 3
+},
+{
+  "fields": {
+    "model": "user",
+    "app_label": "auth"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 4
+},
+{
+  "fields": {
+    "model": "contenttype",
+    "app_label": "contenttypes"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 5
+},
+{
+  "fields": {
+    "model": "session",
+    "app_label": "sessions"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 6
+},
+{
+  "fields": {
+    "model": "campaign",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 7
+},
+{
+  "fields": {
+    "model": "dndclass",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 8
+},
+{
+  "fields": {
+    "model": "race",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 9
+},
+{
+  "fields": {
+    "model": "charactertemplate",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 10
+},
+{
+  "fields": {
+    "model": "character",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 11
+},
+{
+  "fields": {
+    "model": "hitdie",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 12
+},
+{
+  "fields": {
+    "model": "encounter",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 13
+},
+{
+  "fields": {
+    "model": "characterinencounter",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 14
+},
+{
+  "fields": {
+    "model": "location",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 15
+},
+{
+  "fields": {
+    "model": "characterclass",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 16
+},
+{
+  "fields": {
+    "model": "charactertemplateinencounter",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 17
+},
+{
+  "fields": {
+    "model": "characterintroducesencounter",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 18
+},
+{
+  "fields": {
+    "model": "characterlocationrelationship",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 19
+},
+{
+  "fields": {
+    "model": "encounterlocation",
+    "app_label": "rpg_base"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 20
+},
+{
+  "fields": {
+    "expire_date": "2015-05-21T01:06:43.582Z",
+    "session_data": "YjdhYjFkNmM5NzdlM2Y0OWVjY2U5MzFkOWRiYjYxNmMzMzc3ZTRhOTp7Il9hdXRoX3VzZXJfaGFzaCI6ImViNGVlYjk2YTgwNTU1Y2UwZTJkOTdhYWZlYjc3ODk0N2IyMjUyY2UiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+  },
+  "model": "sessions.session",
+  "pk": "hgj39uq5lo8cz7w4dirvbr8u36sxvfk0"
+},
+{
+  "fields": {
+    "name": "Wizard"
+  },
+  "model": "rpg_base.dndclass",
+  "pk": 1
+},
+{
+  "fields": {
+    "parent_race": null,
+    "name": "Human"
+  },
+  "model": "rpg_base.race",
+  "pk": 1
+},
+{
+  "fields": {
+    "parent_race": null,
+    "name": "Goblin"
+  },
+  "model": "rpg_base.race",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "Runelord Karzoug",
+    "campaign": 1,
+    "hp": 200,
+    "initiative_modifier": 10,
+    "race": 1,
+    "template": null,
+    "cr": 20.0,
+    "type": "EN"
+  },
+  "model": "rpg_base.character",
+  "pk": 1
+},
+{
+  "fields": {
+    "die": 4,
+    "num": 1,
+    "character_template": 1,
+    "mod": 2
+  },
+  "model": "rpg_base.hitdie",
+  "pk": 1
+},
+{
+  "fields": {
+    "is_running": false,
+    "name": "The Final Battle",
+    "campaign": 1,
+    "round": 0
+  },
+  "model": "rpg_base.encounter",
+  "pk": 1
+},
+{
+  "fields": {
+    "hp_current": 200,
+    "character": 1,
+    "encounter": 1
+  },
+  "model": "rpg_base.characterinencounter",
+  "pk": 1
+},
+{
+  "fields": {
+    "parent_location": null,
+    "name": "Thassalon",
+    "description": "An ancient contient."
+  },
+  "model": "rpg_base.location",
+  "pk": 1
+},
+{
+  "fields": {
+    "parent_location": 1,
+    "name": "Xin-Shalast",
+    "description": "An ancient Thassalonian city."
+  },
+  "model": "rpg_base.location",
+  "pk": 2
+},
+{
+  "fields": {
+    "levels": 20,
+    "character": 1,
+    "dnd_class": 1
+  },
+  "model": "rpg_base.characterclass",
+  "pk": 1
+},
+{
+  "fields": {
+    "character": 1,
+    "description": "He promises to kill them.",
+    "encounter": 1
+  },
+  "model": "rpg_base.characterintroducesencounter",
+  "pk": 1
+},
+{
+  "fields": {
+    "character": 1,
+    "location": 2,
+    "description": "Was once the ruler."
+  },
+  "model": "rpg_base.characterlocationrelationship",
+  "pk": 1
+},
+{
+  "fields": {
+    "location": 2,
+    "encounter": 1,
+    "description": ""
+  },
+  "model": "rpg_base.encounterlocation",
+  "pk": 1
+},
+{
+  "fields": {
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2015-05-07T01:06:43.579Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$20000$l4bS9cNnbdBc$lnEjpWBvoerfttc4c7ISryyi81RNNPBaJX0qbvY4AEE=",
+    "email": "",
+    "date_joined": "2015-05-07T01:06:12.073Z"
+  },
+  "model": "auth.user",
+  "pk": 1
+},
+{
+  "fields": {
+    "user": 1,
+    "name": "Rise of the Runelords",
+    "description": "The first Pathfinder Adventure Path"
+  },
+  "model": "rpg_base.campaign",
+  "pk": 1
+},
+{
+  "fields": {
+    "cr": 0.5,
+    "user": 1,
+    "race": 2,
+    "name": "Goblin CR 1/2",
+    "initiative_modifier": 2
+  },
+  "model": "rpg_base.charactertemplate",
+  "pk": 1
+}
+]
