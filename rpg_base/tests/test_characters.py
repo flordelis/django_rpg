@@ -4,7 +4,6 @@ from rpg_base.models.character import *
 from rpg_base.models.campaign import Campaign
 
 
-
 class CharacterTemplateTestCase(TestCase):
 
     def setUp(self):
@@ -39,6 +38,11 @@ class CharacterTemplateTestCase(TestCase):
         self.assertEqual(1, len(characters))
         self.assertEqual(characters[0].name, 'BrentTest')
 
+        # Same but with a name.
+        characters = char_template.create_characters(campaign=self.campaign1, name='NolanTest')
+        self.assertEqual(1, len(characters))
+        self.assertEqual(characters[0].name, 'NolanTest')
+
         # 100 characters, because lol
         characters = char_template.create_characters(campaign=self.campaign1,
                                                      num=100)
@@ -46,11 +50,19 @@ class CharacterTemplateTestCase(TestCase):
         for i in range(len(characters)):
             self.assertEqual(characters[i].name, 'BrentTest %s' % (i + 1))
 
+        # Same but with a name.
+        characters = char_template.create_characters(campaign=self.campaign1,
+                                                     num=100, name='NolanTest')
+        self.assertEqual(100, len(characters))
+        for i in range(len(characters)):
+            self.assertEqual(characters[i].name, 'NolanTest %s' % (i + 1))
+
 
 class HitDieTestCase(TestCase):
 
     def setUp(self):
         self.char_template = CharacterTemplate(name="TestTemplate")
+
     def tearDown(self):
         pass
 
@@ -78,7 +90,7 @@ class HitDieTestCase(TestCase):
             rolls.append(d12_plus10.roll())
 
         self.assertTrue(all(n <= 22 for n in rolls))
-        self.assertTrue(all(n >= 1 for n in rolls))
+        self.assertTrue(all(n >= 1 for n in rolls)) # TODO Should this be >= 11 ?
 
         # roll four d8
         four_d8 = HitDie(die=8, num=4)
