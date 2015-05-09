@@ -14,10 +14,13 @@ class EncounterTestCase(TestCase):
         self.campaign1.save()
 
         # Encounter
-        self.encounter1 = Encounter(name='Kill the Testlord!', campaign=campaign)
+        self.encounter1 = Encounter(name='Kill the Testlord!', campaign=self.campaign1)
 
     def tearDown(self):
         pass
 
     def test_start(self):
+        pass
+
+    def test_end(self):
         pass
