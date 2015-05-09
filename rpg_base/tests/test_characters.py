@@ -43,10 +43,12 @@ class CharacterTemplateTestCase(TestCase):
                                                      num=100)
         self.assertEqual(100, len(characters))
 
+
 class HitDieTestCase(TestCase):
 
     def setUp(self):
         self.char_template = CharacterTemplate(name="TestTemplate")
+
     def tearDown(self):
         pass
 
