@@ -1,26 +1,42 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from rpg_base.models.character import *
-from rpg_base.models.campaign import Campaign
+from rpg_base.models import *
 
+
+class DndClassTestCase(TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+
+class RaceTestCase(TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
 
 
 class CharacterTemplateTestCase(TestCase):
 
     def setUp(self):
-
-        # race needed to satisfy character requirements
+        # Race
         self.race1 = Race(name='Hooman')
         self.race1.save()
 
-        self.test_user = User(username="brenttest", password="testpassword",
-                              email='brent.mitton+testcase@gmail.com')
+        # User
+        self.test_user = User(username="brenttest",  password="testpassword", email='brent.mitton+testcase@gmail.com')
         self.test_user.save()
 
-        self.campaign1 = Campaign(name='Rise of the Testlords',
-                                  description='tests are cool',
-                                  user=self.test_user)
+        # Campaign
+        self.campaign1 = Campaign(name='Rise of the Testlords', description='tests are cool', user=self.test_user)
         self.campaign1.save()
+
+        # CharacterTemplate
+        self.template1 = CharacterTemplate(name='BrentTest', race=self.race1)
+        self.template1.save()
 
     def tearDown(self):
         pass
@@ -28,20 +44,38 @@ class CharacterTemplateTestCase(TestCase):
     def test_create_characters(self):
         """
         Test that the create_characters() function on the character template
-        works as expected
+        works as expected.
         """
-        char_template = CharacterTemplate(name='BrentTest',
-                                          race=self.race1)
-        char_template.save()
-
-        # no arguments provided to create_character() (besides campaign)
-        characters = char_template.create_characters(campaign=self.campaign1)
+        # args - campaign
+        characters = self.template1.create_characters(campaign=self.campaign1)
         self.assertEqual(1, len(characters))
+        self.assertEqual(characters[0].name, 'BrentTest')
 
-        # 100 characters, because lol
-        characters = char_template.create_characters(campaign=self.campaign1,
-                                                     num=100)
+        # args - campaign, name='NolanTest'
+        characters = self.template1.create_characters(campaign=self.campaign1, name='NolanTest')
+        self.assertEqual(1, len(characters))
+        self.assertEqual(characters[0].name, 'NolanTest')
+
+        # args - campaign, num=100
+        characters = self.template1.create_characters(campaign=self.campaign1, num=100)
         self.assertEqual(100, len(characters))
+        for i in range(len(characters)):
+            self.assertEqual(characters[i].name, 'BrentTest %s' % (i + 1))
+
+        # args - campaign, num=100, name='NolanTest'
+        characters = self.template1.create_characters(campaign=self.campaign1, num=100, name='NolanTest')
+        self.assertEqual(100, len(characters))
+        for i in range(len(characters)):
+            self.assertEqual(characters[i].name, 'NolanTest %s' % (i + 1))
+
+
+class CharacterTestCase(TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
 
 
 class HitDieTestCase(TestCase):
@@ -59,33 +93,50 @@ class HitDieTestCase(TestCase):
         # I don't really know what the best practices are for dealing with
         # random numbers in tests, but this is mine.
 
-        # Roll a d4
+        # 1d4 should be in [1, 4]
         d4 = HitDie(die=4)
-
         rolls = []
         for i in range(1000):
             rolls.append(d4.roll())
 
-        self.assertTrue(all(n <= 4 for n in rolls))
         self.assertTrue(all(n >= 1 for n in rolls))
+        self.assertTrue(all(n <= 4 for n in rolls))
 
-        # roll a d12+10
+        # d12+10 should be in [11, 22]
         d12_plus10 = HitDie(die=12, mod=10)
         rolls = []
         for i in range(1000):
             rolls.append(d12_plus10.roll())
 
+        self.assertTrue(all(n >= 1 for n in rolls)) # TODO Should this be >= 11 ?
         self.assertTrue(all(n <= 22 for n in rolls))
-        self.assertTrue(all(n >= 1 for n in rolls))
 
-        # roll four d8
+        # 4d8 should be in [4, 32]
         four_d8 = HitDie(die=8, num=4)
         rolls = []
         for i in range(1000):
             rolls.append(four_d8.roll())
 
-        self.assertTrue(all(n <= 32 for n in rolls))
         self.assertTrue(all(n >= 4 for n in rolls))
+        self.assertTrue(all(n <= 32 for n in rolls))
+
+        # 3d12+7 should be in [7, 51]
+        four_d12_plus3 = HitDie(num=3, die=12, mod=7)
+        rolls = []
+        for i in range(1000):
+            rolls.append(four_d12_plus3.roll())
+
+        self.assertTrue(all(n >= 7 for n in rolls))
+        self.assertTrue(all(n <= 51 for n in rolls))
+
+        # d6-3 should be in [1, 3]
+        d6_minus3 = HitDie(die=6, mod=-3)
+        rolls = []
+        for i in range(1000):
+            rolls.append(d6_minus3.roll())
+
+        self.assertTrue(all(n >= 1 for n in rolls))
+        self.assertTrue(all(n <= 3 for n in rolls))
 
 
 

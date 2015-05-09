@@ -24,9 +24,6 @@ class CharacterTemplateInEncounter(models.Model):
     num = models.PositiveIntegerField(default=1)
 
 
-
-
-
 class CharacterIntroducesEncounter(models.Model):
     """
     This model represents a character who has information that might

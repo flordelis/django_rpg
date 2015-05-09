@@ -1,12 +1,25 @@
 from django.db import models
 
 
+class EncounterManager(models.Manager):
+    def enemy_npcs(self):
+        pass
+
+    def friendly_npcs(self):
+        pass
+
+    def players(self):
+        return super(EncounterManager, self).get_queryset().filter(character__player_owned=True)
+
+
 class Encounter(models.Model):
     name = models.CharField(max_length=75)
     campaign = models.ForeignKey("Campaign")
 
     is_running = models.BooleanField(default=False)
     round = models.PositiveIntegerField(default=0)
+
+    objects = EncounterManager()
 
     class Meta:
         app_label = "rpg_base"
@@ -37,7 +50,10 @@ class Encounter(models.Model):
         self.save()
 
     def end(self):
-        pass
+        # Sum experience from enemy NPCs
+        # Split experience amongst players
+        self.is_running = False
+        self.save()
 
 
 class CharacterInEncounter(models.Model):
