@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head_title %} Campaigns {% endblock %}
+{% block content %}
+    <h1>Campaigns</h1>
+    <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+    <tbody>
+    {% for campaign in campaigns %}
+        <a href="{% url 'campaign_view' campaign.pk %}">
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ campaign.name }}</td>
+            </tr>
+        </a>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
