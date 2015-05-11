@@ -75,7 +75,6 @@ class Character(models.Model):
         ('EN', 'Enemy'),
         ('AL', 'Ally'),
         ('NT', 'Neutral'),
-        ('EO', 'Encounter Only'),
     )
 
     name = models.CharField(max_length=50)
@@ -86,9 +85,10 @@ class Character(models.Model):
     cr = models.FloatField(blank=True, null=True, default=0)
     hp = models.PositiveIntegerField()
     initiative_modifier = models.IntegerField()
-
     type = models.CharField(choices=CHARACTER_TYPE, default=False, max_length=2)
     campaign = models.ForeignKey("Campaign")
+
+    encounter_only = models.BooleanField(default=False)
 
     class Meta:
         app_label = "rpg_base"
