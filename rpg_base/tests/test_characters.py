@@ -77,6 +77,7 @@ class CharacterTestCase(TestCase):
         pass
 
 
+
 class HitDieTestCase(TestCase):
 
     def setUp(self):
