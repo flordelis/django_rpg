@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block head_title %}{{ campaign.name }}{% endblock %}
 {% block content %}
-<h1>{{ campaign.name }}</h1>
-<p>{{ campaign.description }}</p>
+    <h1>{{ campaign.name }}</h1>
+    <p>{{ campaign.description }}</p>
+    <p><a href="{% url "character_index" campaign.pk %}">Characters</a></p>
 {% endblock %}
