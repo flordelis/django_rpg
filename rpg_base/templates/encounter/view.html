@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block head_title %}{{ encounter.name }}{% endblock %}
+{% block content %}
+    <h1>{{ encounter.name }}</h1>
+    <p>Race: {{ encounter.race}}</p>
+    <p>CR: {{ encounter.cr}}</p>
+    <p>HP: {{ encounter.hp}}</p>
+{% endblock %}

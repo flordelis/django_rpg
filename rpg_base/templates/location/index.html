@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block head_title %} Locations {% endblock %}
+{% block content %}
+    <h1>Locations</h1>
+    <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'location_view' location.pk %}">{{ location.name }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
