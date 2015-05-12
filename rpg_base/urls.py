@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^campaign/(?P<pk>[0-9]+)/$', campaign.view, name='campaign_view'),
     url(r'^campaign/(?P<pk>[0-9]+)/character/$', character.index, name='character_index'),
     url(r'^campaign/(?P<pk>[0-9]+)/character/(?P<character_pk>[0-9]+)$', character.view, name='character_view'),
+
+    # TODO This is going to get messy super quick.
 ]

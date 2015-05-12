@@ -14,6 +14,7 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td><a href="{% url 'encounter_view' encounter.pk %}">{{ encounter.name }}</a></td>
+                {# TODO Encounter List Table Rows #}
             </tr>
         {% endfor %}
         </tbody>

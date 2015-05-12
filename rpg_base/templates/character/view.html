@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block head_title %}{{ character.name }}{% endblock %}
 {% block content %}
+{#    TODO Character View Template#}
     <h1>{{ character.name }}</h1>
+    <p>Type: {{ character.type }}</p>
     <p>Race: {{ character.race}}</p>
+    <p>Encounter:</p>
     <p>CR: {{ character.cr}}</p>
     <p>HP: {{ character.hp}}</p>
+    <p>Initiative: {{ character.initiative_modifier }}</p>
+    <p></p>
 {% endblock %}
