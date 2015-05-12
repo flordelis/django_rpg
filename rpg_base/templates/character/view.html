@@ -2,5 +2,7 @@
 {% block head_title %}{{ character.name }}{% endblock %}
 {% block content %}
     <h1>{{ character.name }}</h1>
-    <p>{{ character.description }}</p>
+    <p>Race: {{ character.race}}</p>
+    <p>CR: {{ character.cr}}</p>
+    <p>HP: {{ character.hp}}</p>
 {% endblock %}
