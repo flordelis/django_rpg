@@ -7,7 +7,7 @@ from rpg_base.models import Campaign
 @login_required()
 def index(request):
     campaigns = get_list_or_404(Campaign, user=request.user)
-    paginator = Paginator(campaigns, 1)
+    paginator = Paginator(campaigns, 25)
 
     page = request.GET.get('page')
 
