@@ -42,7 +42,7 @@
                     <!-- Left Side -->
                     <ul class="nav navbar-nav">
                         {% if request.user.is_authenticated %}
-                            <li class="presentation"><a href="{% url "campaign_index" %}">Campaigns</a></li>
+                            <li class="presentation"><a href="{% url "index" %}">Campaigns</a></li>
                         {% else %}
                         {% endif %}
                     </ul>
