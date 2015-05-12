@@ -41,7 +41,7 @@
                 {% block navbar_links %}
                     <!-- Left Side -->
                     <ul class="nav navbar-nav">
-                        {% if request.user.is_authenticated and request.user.autoshop %}
+                        {% if request.user.is_authenticated %}
                             <li class="presentation"><a href="{% url "campaign_index" %}">Campaigns</a></li>
                         {% else %}
                         {% endif %}
@@ -70,6 +70,8 @@
 
     <!-- Content -->
     <div class="container {% block content_class %} {% endblock %}" id="page-content">
+
+        <ol class="breadcrumb"> {% block  breadcrumbs %} {% endblock %} </ol>
         {% block content %} {% endblock %}
     </div><!-- /#page-content -->
 
