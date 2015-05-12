@@ -42,6 +42,7 @@
                     <!-- Left Side -->
                     <ul class="nav navbar-nav">
                         {% if request.user.is_authenticated and request.user.autoshop %}
+                            <li class="presentation"><a href="{% url "campaign_index" %}">Campaigns</a></li>
                         {% else %}
                         {% endif %}
                     </ul>
