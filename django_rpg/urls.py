@@ -9,4 +9,6 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(rpg_base.urls)),
+    url(r'^accounts/', include('accounts.urls')),
+
 ]
