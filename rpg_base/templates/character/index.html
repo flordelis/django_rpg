@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block head_title %} Characters {% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
+        <li><a href="{% url "campaign_view" campaign.pk %}">{{ campaign.name }}</a></li>
+        <li>Characters</li>
+    </ol>
+{% endblock %}
 {% block content %}
     <h1>Characters</h1>
     <table class="table table-striped table-responsive">
@@ -13,7 +20,7 @@
         {% for character in characters %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'character_view' campaign.pk character.pk %}">{{ character.name }}</a></td>
+                <td><a href="{% url 'character_view' character.campaign.pk character.pk %}">{{ character.name }}</a></td>
                 {# TODO Add more variables to the table. #}
             </tr>
         {% endfor %}

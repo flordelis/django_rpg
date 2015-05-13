@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block head_title %} Campaigns {% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>Campaigns</li>
+    </ol>
+{% endblock %}
 {% block content %}
     <h1>Campaigns</h1>
     <table class="table table-striped table-responsive">
@@ -17,5 +22,44 @@
             </tr>
         {% endfor %}
         </tbody>
+
+        <nav>
+            <ul class="pagination">
+
+
+                {%  if campaigns.has_previous %}
+                    <li>
+                        <a href="?page={{ campaigns.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for page in campaigns.paginator.page_range %}
+                    <li {% if page == campaigns.number %} class="active"{% endif %}>
+                        <a href="?page={{ page}}" >{{ page }}</a>
+                    </li>
+                {% endfor %}
+
+                {%  if campaigns.has_next %}
+                    <li>
+                        <a href="?page={{ campaigns.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
     </table>
 {% endblock %}
