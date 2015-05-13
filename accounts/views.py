@@ -48,3 +48,10 @@ class RegisterView(generic.CreateView):
         login(self.request, user)
         return super(RegisterView, self).get_success_url()
 
+class LogoutView(generic.RedirectView):
+    url = reverse_lazy('index')
+
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)
+
