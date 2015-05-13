@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% block head_title %}{{ campaign.name }}{% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
+        <li>{{ campaign.name }}</li>
+    </ol>
+{% endblock %}
 {% block content %}
-    <a href="{% url "campaign_index" %}" class="btn">Campaigns</a>
     <h1>{{ campaign.name }}</h1>
     <p>{{ campaign.description }}</p>
 {% endblock %}
 {% block sidebar_right_class %}pull-right{% endblock %}
 {% block sidebar_right %}
     <div class="panel panel-default">
-    <div class="panel-heading">
-        Links
-    </div>
-    <div class="panel-body">
-        <p><a href="{% url "character_index" campaign.pk %}">Characters</a></p>
-        {# TODO Get some summary information for the Campaign view template. #}
-    </div>
+        <div class="panel-heading">
+            Links
+        </div>
+        <div class="panel-body">
+            <p><a href="{% url "character_index" campaign.pk %}">Characters</a></p>
+            {# TODO Get some summary information for the Campaign view template. #}
+        </div>
     </div>
 {% endblock %}

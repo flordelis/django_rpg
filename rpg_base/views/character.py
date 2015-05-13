@@ -6,6 +6,7 @@ from rpg_base.models import Character, Campaign
 
 @login_required()
 def index(request, pk):
+    campaign = get_object_or_404(Campaign, pk=pk)
     characters = get_list_or_404(Character, campaign=pk)
     paginator = Paginator(characters, 25)
 
@@ -19,8 +20,8 @@ def index(request, pk):
         characters = paginator.page(paginator.num_pages)
 
     context = {
-        "page": page,
         "characters": characters,
+        "campaign": campaign,
     }
 
     return render_to_response("character/index.html", context)
