@@ -28,11 +28,9 @@ def index(request, pk):
 
 @login_required
 def view(request, pk, character_pk):
-    campaign = get_object_or_404(Campaign, pk=pk)
     character = get_object_or_404(Character, pk=character_pk, campaign=pk)
 
     context = {
-        "campaign": campaign,
         "character": character,
     }
 

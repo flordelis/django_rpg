@@ -13,7 +13,7 @@
         {% for character in characters %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'character_view' campaign.pk character.pk %}">{{ character.name }}</a></td>
+                <td><a href="{% url 'character_view' character.campaign.pk character.pk %}">{{ character.name }}</a></td>
                 {# TODO Add more variables to the table. #}
             </tr>
         {% endfor %}
