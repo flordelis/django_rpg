@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block head_title %}{{ location.name }}{% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
+        <li><a href="{% url "campaign_view" location.campaign.pk %}">{{ location.campaign.name }}</a></li>
+        <li><a href="{% url "location_index" location.campaign.pk %}">Locations</a></li>
+        <li>{{ location.name }}</li>
+    </ol>
+{% endblock %}
 {% block content %}
-    {# TODO Location View Template - Show some stats. Subthings. #}
+{#    TODO Location View Template#}
     <h1>{{ location.name }}</h1>
 {% endblock %}
