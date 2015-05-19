@@ -6,8 +6,16 @@ from rpg_base.models import Campaign
 
 @login_required()
 def index(request):
-    campaigns = get_list_or_404(Campaign, user=request.user)
+    print request.GET
+    if "search" in request.GET:
+        search_value = request.GET["search"]
+        campaigns = get_list_or_404(Campaign, user=request.user, name__contains=request.GET["search"])
+    else:
+        search_value = ""
+        campaigns = get_list_or_404(Campaign, user=request.user)
+
     paginator = Paginator(campaigns, 25)
+
 
     page = request.GET.get('page')
 
@@ -18,9 +26,11 @@ def index(request):
     except EmptyPage:
         campaigns = paginator.page(paginator.num_pages)
 
+
+
     context = {
-        "page": page,
         "campaigns": campaigns,
+        "search_value": search_value,
     }
 
     return render_to_response("campaign/index.html", context)

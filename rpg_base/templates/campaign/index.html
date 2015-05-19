@@ -6,27 +6,17 @@
     </ol>
 {% endblock %}
 {% block content %}
-    <h1>Campaigns</h1>
-    <table class="table table-striped table-responsive">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for campaign in campaigns %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'campaign_view' campaign.pk %}">{{ campaign.name }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
+    <h1>Campaigns <a href="{% url "index" %}"><span class="btn btn-primary pull-right">Create</span></a></h1>
+    <form method="GET" action="." class="form-inline pull-right">
+        <div class="form-group">
+        <input type="text" name="search" value="{{ search_value }}" class="form-control" data-toggle="tooltip" data-placement="top" title="Search campaigns by name.">
+        <input type="submit" value="Search" class="form-control">
+        </div>
+    </form>
 
+    {% if campaigns.paginator.count > 1  %}
         <nav>
             <ul class="pagination">
-
-
                 {%  if campaigns.has_previous %}
                     <li>
                         <a href="?page={{ campaigns.previous_page_number }}" aria-label="Previous">
@@ -61,5 +51,71 @@
                 {% endif %}
             </ul>
         </nav>
+    {% endif %}
+    <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for campaign in campaigns %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'campaign_view' campaign.pk %}">{{ campaign.name }}</a></td>
+                <td><a href="{% url 'index' %}"><span class="btn btn-sm btn-danger">Delete</span></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
+    {% if campaigns.paginator.count >= 10  %}
+        <nav>
+            <ul class="pagination">
+                {%  if campaigns.has_previous %}
+                    <li>
+                        <a href="?page={{ campaigns.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for page in campaigns.paginator.page_range %}
+                    <li {% if page == campaigns.number %} class="active"{% endif %}>
+                        <a href="?page={{ page}}" >{{ page }}</a>
+                    </li>
+                {% endfor %}
+
+                {%  if campaigns.has_next %}
+                    <li>
+                        <a href="?page={{ campaigns.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}
+
+{% block extra_script_base %}
+<script type="text/javascript">
+    'use strict';
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>
 {% endblock %}
