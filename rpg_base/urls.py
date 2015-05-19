@@ -13,4 +13,7 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/location/$', location.index, name='location_index'),
     url(r'^(?P<pk>[0-9]+)/location/(?P<location_pk>[0-9]+)$', location.view, name='location_view'),
     # TODO This is going to get messy super quick.
+
+    url(r'^(?P<pk>[0-9]+)/encounter/$', encounter.index, name='encounter_index'),
+    url(r'^(?P<pk>[0-9]+)/encounter/(?P<encounter_pk>[0-9]+)$', encounter.view, name='encounter_view'),
 ]
