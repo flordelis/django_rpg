@@ -9,10 +9,10 @@ def index(request):
     print request.GET
     if "search" in request.GET:
         search_value = request.GET["search"]
-        campaigns = get_list_or_404(Campaign, user=request.user, name__contains=request.GET["search"])
+        campaigns = Campaign.objects.filter(user=request.user, name__contains=request.GET['search'])
     else:
         search_value = ""
-        campaigns = get_list_or_404(Campaign, user=request.user)
+        campaigns = Campaign.objects.filter(user=request.user)
 
     paginator = Paginator(campaigns, 25)
 
