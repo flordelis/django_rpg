@@ -2,7 +2,9 @@
 {% block head_title %} Campaigns {% endblock %}
 {% block breadcrumbs %}
     <ol class="breadcrumb">
-        <li>Campaigns</li>
+        <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
+        <li><a href="{% url "campaign_view" campaign.pk %}">{{ campaign.name }}</a></li>
+        <li>Characters</li>
     </ol>
 {% endblock %}
 {% block content %}

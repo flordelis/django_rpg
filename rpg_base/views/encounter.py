@@ -1,11 +1,12 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
-from rpg_base.models import Encounter
+from rpg_base.models import Encounter, Campaign
 
 
 @login_required
 def index(request, campaign_pk):
+    campaign = get_object_or_404(Campaign, pk=campaign_pk, user=request.user)
     if "search" in request.GET:
         search_value = request.GET["search"]
         encounters = get_list_or_404(Encounter, campaign=campaign_pk, name__contains=request.GET["search"])
@@ -28,6 +29,7 @@ def index(request, campaign_pk):
 
 
     context = {
+        "campaign": campaign,
         "encounters": encounters,
         "search_value": search_value,
     }
