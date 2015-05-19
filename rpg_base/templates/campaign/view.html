@@ -9,16 +9,8 @@
 {% block content %}
     <h1>{{ campaign.name }}</h1>
     <p>{{ campaign.description }}</p>
-{% endblock %}
-{% block sidebar_right_class %}pull-right{% endblock %}
-{% block sidebar_right %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Links
-        </div>
-        <div class="panel-body">
-            <p><a href="{% url "character_index" campaign.pk %}">Characters</a></p>
-            {# TODO Get some summary information for the Campaign view template. #}
-        </div>
-    </div>
+
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="{% url "character_index" campaign.pk %}">Characters</a></li>
+    </ul>
 {% endblock %}
