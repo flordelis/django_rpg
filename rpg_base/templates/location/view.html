@@ -11,4 +11,30 @@
 {% block content %}
 {#    TODO Location View Template#}
     <h1>{{ location.name }}</h1>
+    <h2>Inner Locations</h2>
+    <table class="table table-strpied">
+    <thead><tr><th>#</th><th>Name</th></tr></thead>
+    <tbody>
+    {% for sublocation in location.location_set.all %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url "location_view" location.campaign.pk sublocation.pk %}">{{ sublocation.name }}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+    <h2>Related Characters</h2>
+    <table class="table table-strpied">
+    <thead><tr><th>#</th><th>Name</th><th>Description</th></tr></thead>
+    <tbody>
+    {% for character_rel in location.characterlocationrelationship_set.all %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+            <td><a href="{% url "character_view" location.campaign.pk character_rel.character.pk %}">{{ character_rel.character.name }}</a></td>
+            <td>{{ character_rel.description }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
 {% endblock %}
