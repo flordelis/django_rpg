@@ -46,28 +46,34 @@ class CharacterTemplateTestCase(TestCase):
         Test that the create_characters() function on the character template
         works as expected.
         """
-        # args - campaign
         characters = self.template1.create_characters(campaign=self.campaign1)
         self.assertEqual(1, len(characters))
         self.assertEqual(characters[0].name, 'BrentTest')
 
         # args - campaign, name='NolanTest'
+    def test_create_characters__with_name(self):
         characters = self.template1.create_characters(campaign=self.campaign1, name='NolanTest')
         self.assertEqual(1, len(characters))
         self.assertEqual(characters[0].name, 'NolanTest')
 
         # args - campaign, num=100
+    def test_create_characters__100_characters(self):
         characters = self.template1.create_characters(campaign=self.campaign1, num=100)
         self.assertEqual(100, len(characters))
         for i in range(len(characters)):
             self.assertEqual(characters[i].name, 'BrentTest %s' % (i + 1))
 
-        # args - campaign, num=100, name='NolanTest'
+    def test_create_characters__100_characters_with_name(self):
         characters = self.template1.create_characters(campaign=self.campaign1, num=100, name='NolanTest')
         self.assertEqual(100, len(characters))
         for i in range(len(characters)):
             self.assertEqual(characters[i].name, 'NolanTest %s' % (i + 1))
 
+    def test_create_characters__character_is_encounter_only(self):
+        characters = self.template1.create_characters(campaign=self.campaign1)
+
+        for character in characters:
+            self.assertTrue(character.encounter_only)
 
 class CharacterTestCase(TestCase):
     def setUp(self):
