@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block head_title %} {{ model_name }} {% endblock %}
 {% block breadcrumbs %}
 {% endblock %}
 {% block content %}
-    <h1>Campaigns <a href="{% url "campaign_index" %}"><span class="btn btn-primary pull-right">Create</span></a></h1>
+    {% block index_head %}
+    {% endblock %}
     <form method="GET" action="." class="form-inline pull-right">
         <div class="form-group">
         <input type="text" name="search" value="{{ search_value }}" class="form-control" data-toggle="tooltip" data-placement="top" title="Search {{ model_name }} by name.">
