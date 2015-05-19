@@ -2,7 +2,9 @@
 {% block head_title %} Campaigns {% endblock %}
 {% block breadcrumbs %}
     <ol class="breadcrumb">
-        <li>Campaigns</li>
+        <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
+        <li><a href="{% url "campaign_view" campaign.pk %}">{{ campaign.name }}</a></li>
+        <li>Characters</li>
     </ol>
 {% endblock %}
 {% block content %}
@@ -64,7 +66,7 @@
         {% for encounter in encounters %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'encounter_view' encounter.pk %}">{{ encounter.name }}</a></td>
+                <td><a href="{% url 'encounter_view' encounter.campaign.pk encounter.pk %}">{{ encounter.name }}</a></td>
                 <td><a href="{% url 'index' %}"><span class="btn btn-sm btn-danger">Delete</span></a></td>
             </tr>
         {% endfor %}
