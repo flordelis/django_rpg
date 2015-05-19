@@ -29,7 +29,7 @@ def index(request):
 
 
     context = {
-        "campaigns": campaigns,
+        "objects": campaigns,
         "search_value": search_value,
     }
 
