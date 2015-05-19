@@ -18,7 +18,7 @@ class LoginForm(AuthenticationForm):
             'username',
             'password',
             ButtonHolder(
-                Submit('login', 'Login', css_class='btn-primary')
+                Submit('login', 'Login')
             )
         )
 
@@ -34,7 +34,7 @@ class RegistrationForm(UserCreationForm):
             'password1',
             'password2',
             ButtonHolder(
-                Submit('register', 'Register', css_class='btn-primary')
+                Submit('register', 'Register')
             )
         )
 
@@ -50,7 +50,7 @@ class ChangePasswordForm(PasswordChangeForm):
             'new_password1',
             'new_password2',
             ButtonHolder(
-                Submit('submit', 'Change Password', css_class='btn-primary')
+                Submit('submit', 'Change Password')
             )
         )
 
