@@ -34,7 +34,7 @@ class CharacterTemplate(models.Model):
     class Meta:
         app_label = "rpg_base"
 
-    def create_characters(self, campaign, num=1, name='', type='EN'):
+    def create_characters(self, campaign, num=1, name='', type='EN', encounter_only=True):
         """
 
         :param campaign:
@@ -62,7 +62,7 @@ class CharacterTemplate(models.Model):
 
             new_characters.append(Character.objects.create(campaign=campaign, name=iname,
                                                            initiative_modifier=self.initiative_modifier, hp=hp,
-                                                           race=self.race, type=type))
+                                                           race=self.race, type=type, encounter_only=encounter_only))
         return new_characters
 
     def __unicode__(self):
