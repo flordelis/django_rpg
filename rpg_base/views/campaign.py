@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404, get_list_or_
 from rpg_base.models import Campaign
 
 
-@login_required()
+@login_required
 def index(request):
     print request.GET
     if "search" in request.GET:

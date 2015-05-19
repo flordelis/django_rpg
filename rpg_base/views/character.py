@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404, get_list_or_
 from rpg_base.models import Character, Campaign
 
 
-@login_required()
+@login_required
 def index(request, pk):
     campaign = get_object_or_404(Campaign, pk=pk)
     characters = get_list_or_404(Character, campaign=pk)
