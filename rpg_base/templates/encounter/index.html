@@ -64,7 +64,7 @@
         {% for encounter in encounters %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'encounter_view' encounter.pk %}">{{ encounter.name }}</a></td>
+                <td><a href="{% url 'encounter_view' encounter.campaign.pk encounter.pk %}">{{ encounter.name }}</a></td>
                 <td><a href="{% url 'index' %}"><span class="btn btn-sm btn-danger">Delete</span></a></td>
             </tr>
         {% endfor %}

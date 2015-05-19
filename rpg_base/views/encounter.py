@@ -5,14 +5,13 @@ from rpg_base.models import Encounter
 
 
 @login_required
-def index(request):
-    print request.GET
+def index(request, campaign_pk):
     if "search" in request.GET:
         search_value = request.GET["search"]
-        encounters = get_list_or_404(Encounter, user=request.user, name__contains=request.GET["search"])
+        encounters = get_list_or_404(Encounter, campaign=campaign_pk, name__contains=request.GET["search"])
     else:
         search_value = ""
-        encounters = get_list_or_404(Encounter, user=request.user)
+        encounters = get_list_or_404(Encounter, campaign=campaign_pk)
 
     paginator = Paginator(encounters, 25)
 
@@ -37,8 +36,8 @@ def index(request):
 
 
 @login_required
-def view(request, pk):
-    encounter = get_object_or_404(Encounter, pk=pk, user=request.user)
+def view(request, campaign_pk, encounter_pk):
+    encounter = get_object_or_404(Encounter, pk=encounter_pk, campaign=campaign_pk)
 
     context = {
         "encounter": encounter,
