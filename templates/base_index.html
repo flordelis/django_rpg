@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block head_title %} {{ model_name }} {% endblock %}
+{% block breadcrumbs %}
+{% endblock %}
+{% block content %}
+    <h1>Campaigns <a href="{% url "campaign_index" %}"><span class="btn btn-primary pull-right">Create</span></a></h1>
+    <form method="GET" action="." class="form-inline pull-right">
+        <div class="form-group">
+        <input type="text" name="search" value="{{ search_value }}" class="form-control" data-toggle="tooltip" data-placement="top" title="Search {{ model_name }} by name.">
+        <input type="submit" value="Search" class="form-control">
+        </div>
+    </form>
+
+    {% if objects.paginator.count > 1  %}
+        <nav>
+            <ul class="pagination">
+                {%  if objects.has_previous %}
+                    <li>
+                        <a href="?page={{ objects.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for page in objects.paginator.page_range %}
+                    <li {% if page == object.number %} class="active"{% endif %}>
+                        <a href="?page={{ page }}" >{{ page }}</a>
+                    </li>
+                {% endfor %}
+
+                {%  if objects.has_next %}
+                    <li>
+                        <a href="?page={{ objects.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+    {% block object_table %}
+    {% endblock %}
+
+    {% if objects.paginator.count >= 10  %}
+        <nav>
+            <ul class="pagination">
+                {%  if objects.has_previous %}
+                    <li>
+                        <a href="?page={{ objects.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for page in objects.paginator.page_range %}
+                    <li {% if page == objects.number %} class="active"{% endif %}>
+                        <a href="?page={{ page}}" >{{ page }}</a>
+                    </li>
+                {% endfor %}
+
+                {%  if objects.has_next %}
+                    <li>
+                        <a href="?page={{ objects.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}
+
+{% block extra_script_base %}
+<script type="text/javascript">
+    'use strict';
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>
+{% endblock %}
