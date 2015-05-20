@@ -20,7 +20,7 @@ def index(request, campaign_pk):
         characters = paginator.page(paginator.num_pages)
 
     context = {
-        "characters": characters,
+        "objects": characters,
         "campaign": campaign,
     }
 
