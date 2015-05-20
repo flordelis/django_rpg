@@ -38,6 +38,10 @@ class CharacterTemplateTestCase(TestCase):
         self.template1 = CharacterTemplate(name='BrentTest', race=self.race1)
         self.template1.save()
 
+        # HitDie
+        self.hd1 = HitDie(num=1, die=4, mod=0, character_template=self.template1)
+        self.hd1.save()
+
     def tearDown(self):
         pass
 
@@ -74,6 +78,29 @@ class CharacterTemplateTestCase(TestCase):
 
         for character in characters:
             self.assertTrue(character.encounter_only)
+
+    def test_create_characters__types_are_good(self):
+        characters = self.template1.create_characters(campaign=self.campaign1)
+        for character in characters:
+            self.assertEqual(character.type, 'EN')
+
+        characters = self.template1.create_characters(campaign=self.campaign1, num=10, type='AL')
+        for character in characters:
+            self.assertEqual(character.type, 'AL')
+
+        characters = self.template1.create_characters(campaign=self.campaign1, num=10, type='NT')
+        for character in characters:
+            self.assertEqual(character.type, 'NT')
+
+        characters = self.template1.create_characters(campaign=self.campaign1, num=10, type='PL')
+        for character in characters:
+            self.assertEqual(character.type, 'PL')
+
+    def test_create_characters__hp_gt_0(self):
+        characters = self.template1.create_characters(campaign=self.campaign1)
+        for character in characters:
+            print character.hp
+            self.assertTrue(character.hp > 0)
 
 class CharacterTestCase(TestCase):
     def setUp(self):
