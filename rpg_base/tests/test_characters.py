@@ -38,6 +38,10 @@ class CharacterTemplateTestCase(TestCase):
         self.template1 = CharacterTemplate(name='BrentTest', race=self.race1)
         self.template1.save()
 
+        # HitDie
+        self.hd1 = HitDie(num=1, die=4, mod=0, character_template=self.template1)
+        self.hd1.save()
+
     def tearDown(self):
         pass
 
@@ -46,27 +50,57 @@ class CharacterTemplateTestCase(TestCase):
         Test that the create_characters() function on the character template
         works as expected.
         """
-        # args - campaign
         characters = self.template1.create_characters(campaign=self.campaign1)
         self.assertEqual(1, len(characters))
         self.assertEqual(characters[0].name, 'BrentTest')
 
         # args - campaign, name='NolanTest'
+    def test_create_characters__with_name(self):
         characters = self.template1.create_characters(campaign=self.campaign1, name='NolanTest')
         self.assertEqual(1, len(characters))
         self.assertEqual(characters[0].name, 'NolanTest')
 
         # args - campaign, num=100
+    def test_create_characters__100_characters(self):
         characters = self.template1.create_characters(campaign=self.campaign1, num=100)
         self.assertEqual(100, len(characters))
         for i in range(len(characters)):
             self.assertEqual(characters[i].name, 'BrentTest %s' % (i + 1))
 
-        # args - campaign, num=100, name='NolanTest'
+    def test_create_characters__100_characters_with_name(self):
         characters = self.template1.create_characters(campaign=self.campaign1, num=100, name='NolanTest')
         self.assertEqual(100, len(characters))
         for i in range(len(characters)):
             self.assertEqual(characters[i].name, 'NolanTest %s' % (i + 1))
+
+    def test_create_characters__character_is_encounter_only(self):
+        characters = self.template1.create_characters(campaign=self.campaign1)
+
+        for character in characters:
+            self.assertTrue(character.encounter_only)
+
+    def test_create_characters__types_are_good(self):
+        characters = self.template1.create_characters(campaign=self.campaign1)
+        for character in characters:
+            self.assertEqual(character.type, 'EN')
+
+        characters = self.template1.create_characters(campaign=self.campaign1, num=10, type='AL')
+        for character in characters:
+            self.assertEqual(character.type, 'AL')
+
+        characters = self.template1.create_characters(campaign=self.campaign1, num=10, type='NT')
+        for character in characters:
+            self.assertEqual(character.type, 'NT')
+
+        characters = self.template1.create_characters(campaign=self.campaign1, num=10, type='PL')
+        for character in characters:
+            self.assertEqual(character.type, 'PL')
+
+    def test_create_characters__hp_gt_0(self):
+        characters = self.template1.create_characters(campaign=self.campaign1)
+        for character in characters:
+            print character.hp
+            self.assertTrue(character.hp > 0)
 
 
 class CharacterTestCase(TestCase):
@@ -75,7 +109,6 @@ class CharacterTestCase(TestCase):
 
     def tearDown(self):
         pass
-
 
 
 class HitDieTestCase(TestCase):
@@ -137,7 +170,3 @@ class HitDieTestCase(TestCase):
 
         self.assertTrue(all(n >= 1 for n in rolls))
         self.assertTrue(all(n <= 3 for n in rolls))
-
-
-
-
