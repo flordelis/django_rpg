@@ -5,6 +5,11 @@
         <li>Campaigns</li>
     </ol>
 {% endblock %}
+
+{% block index_head %}
+    <h1>Campaigns <a href="{% url "campaign_index" %}"><span class="btn btn-primary pull-right">Create</span></a></h1>
+{%  endblock  %}
+
 {% block object_table %}
      <table class="table table-striped table-responsive">
         <thead>
