@@ -102,13 +102,13 @@ class CharacterTemplateTestCase(TestCase):
             print character.hp
             self.assertTrue(character.hp > 0)
 
+
 class CharacterTestCase(TestCase):
     def setUp(self):
         pass
 
     def tearDown(self):
         pass
-
 
 
 class HitDieTestCase(TestCase):
@@ -170,7 +170,3 @@ class HitDieTestCase(TestCase):
 
         self.assertTrue(all(n >= 1 for n in rolls))
         self.assertTrue(all(n <= 3 for n in rolls))
-
-
-
-
