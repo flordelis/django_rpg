@@ -5,9 +5,9 @@ from rpg_base.models import Location, Campaign
 
 
 @login_required()
-def index(request, pk):
-    campaign = get_object_or_404(Campaign, pk=pk)
-    locations = get_list_or_404(Location, campaign=pk)
+def index(request, campaign_pk):
+    campaign = get_object_or_404(Campaign, pk=campaign_pk)
+    locations = get_list_or_404(Location, campaign=campaign_pk)
     paginator = Paginator(locations, 25)
 
     page = request.GET.get('page')
@@ -28,8 +28,8 @@ def index(request, pk):
 
 
 @login_required
-def view(request, pk, location_pk):
-    location = get_object_or_404(Location, pk=location_pk, campaign=pk)
+def view(request, campaign_pk, location_pk):
+    location = get_object_or_404(Location, pk=location_pk, campaign=campaign_pk)
 
     context = {
         "location": location,
