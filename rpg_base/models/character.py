@@ -86,6 +86,8 @@ class Character(models.Model):
     hp = models.PositiveIntegerField()
     initiative_modifier = models.IntegerField()
     type = models.CharField(choices=CHARACTER_TYPE, default=False, max_length=2)
+    relationships = models.ManyToManyField("self", symmetrical=False, blank=True, through="CharacterRelationship",
+                                           related_name="related_to")
     campaign = models.ForeignKey("Campaign")
 
     encounter_only = models.BooleanField(default=False)

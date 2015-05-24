@@ -19,11 +19,17 @@ class CharacterClassInline(admin.TabularInline):
     extra = 0
 
 
+class CharacterRelationshipInline(admin.TabularInline):
+    model = models.CharacterRelationship
+    extra = 0
+
+
 @admin.register(models.Character)
 class CharacterAdmin(admin.ModelAdmin):
     list_display = ('name', 'race', 'campaign', )
     inlines = (
         CharacterClassInline,
+        CharacterRelationshipInline,
         CharacterLocationRelationshipTab,
     )
 
@@ -74,6 +80,7 @@ class LocationAdmin(admin.ModelAdmin):
 class HitDieTab(admin.TabularInline):
     model = models.HitDie
     extra = 0
+
 
 @admin.register(models.CharacterTemplate)
 class CharacterTemplateAdmin(admin.ModelAdmin):
