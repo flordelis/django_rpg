@@ -21,6 +21,7 @@ class CharacterClassInline(admin.TabularInline):
 
 class CharacterRelationshipInline(admin.TabularInline):
     model = models.CharacterRelationship
+    fk_name = 'from_character'
     extra = 0
 
 

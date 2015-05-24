@@ -43,8 +43,8 @@ class CharacterLocationRelationship(models.Model):
     description = models.CharField(max_length=250, null=True, blank=True, default="")
 
 class CharacterRelationship(models.Model):
-    from_character = models.ForeignKey(Character, related_name="from_characters")
-    to_character = models.ForeignKey(Character, related_name="to_characters")
+    from_character = models.ForeignKey("Character", related_name="from_characters")
+    to_character = models.ForeignKey("Character", related_name="to_characters")
     description = models.CharField(max_length=250, null=True, blank=True, default="")
 
 
