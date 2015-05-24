@@ -1,6 +1,7 @@
 from campaign import *
 from character import *
 from encounter import *
+from organization import *
 from location import *
 
 
