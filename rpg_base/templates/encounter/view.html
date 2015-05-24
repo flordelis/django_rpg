@@ -1,9 +1,23 @@
 {% extends "base.html" %}
 {% block head_title %}{{ encounter.name }}{% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
+        <li><a href="{% url "campaign_view" encounter.campaign.pk %}">{{ encounter.campaign.name }}</a></li>
+        <li><a href="{% url "encounter_index" encounter.campaign.pk %}">Encounters</a></li>
+        <li>{{ encounter.name }}</li>
+    </ol>
+{% endblock %}
 {% block content %}
-    {# TODO Encounter View Template. #}
-    <h1>{{ encounter.name }}</h1>
-    <p>Race: {{ encounter.race}}</p>
-    <p>CR: {{ encounter.cr}}</p>
-    <p>HP: {{ encounter.hp}}</p>
+    <div>
+        <h1>
+            {{ encounter.name }}
+            {% if encounter.is_running %}
+                <span class="btn btn-primary">Running</span>
+            {% else %}
+                <a href="#"><span class="btn btn-default">Start</span></a>
+            {% endif %}
+        </h1>
+
+    </div>
 {% endblock %}
