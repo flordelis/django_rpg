@@ -20,7 +20,7 @@ def index(request, campaign_pk):
         characters = paginator.page(paginator.num_pages)
 
     context = {
-        "characters": characters,
+        "objects": characters,
         "campaign": campaign,
     }
 
@@ -28,8 +28,8 @@ def index(request, campaign_pk):
 
 
 @login_required
-def view(request, pk, character_pk):
-    character = get_object_or_404(Character, pk=character_pk, campaign=pk)
+def view(request, character_pk):
+    character = get_object_or_404(Character, pk=character_pk)
 
     context = {
         "character": character,
