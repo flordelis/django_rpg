@@ -45,3 +45,9 @@ def view(request, campaign_pk):
     }
 
     return render_to_response("campaign/view.html", context)
+
+@login_required
+def create(request):
+
+
+    pass
