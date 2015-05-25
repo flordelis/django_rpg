@@ -35,6 +35,24 @@ class CharacterAdmin(admin.ModelAdmin):
     )
 
 
+class OrganizationMemberTab(admin.TabularInline):
+    model = models.OrganizationMember
+    extra = 0
+
+
+class OrganizationLocationTab(admin.TabularInline):
+    model = models.OrganizationLocation
+    extra = 0
+
+
+@admin.register(models.Organization)
+class OrganizationAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    inlines = (
+        OrganizationMemberTab,
+        OrganizationLocationTab,
+    )
+
 @admin.register(models.Race)
 class RaceAdmin(admin.ModelAdmin):
     list_display = ('name', 'parent_race',)
