@@ -13,13 +13,12 @@
             <div class="col-sm-2"><b>Description:</b></div>
             <div class="col-sm-10">{{ campaign.description }}</div>
         </div>
-
         <div class="row">
             <h2>Related Content</h2>
             <ul class="nav nav-pills">
-                <li role="presentation"><a href="{% url "character_index" campaign.pk %}">Characters</a></li>
-                <li role="presentation"><a href="{% url "encounter_index" campaign.pk %}">Encounters</a></li>
-                <li role="presentation"><a href="{% url "location_index" campaign.pk %}">Locations</a></li>
+                <li role="presentation"><a href="{% url "character_index" campaign.pk %}">Characters <span class="badge">{{ campaign.character_set.count }}</span></a></li>
+                <li role="presentation"><a href="{% url "encounter_index" campaign.pk %}">Encounters <span class="badge">{{ campaign.encounter_set.count }}</span></a></li>
+                <li role="presentation"><a href="{% url "location_index" campaign.pk %}">Locations <span class="badge">{{ campaign.location_set.count }}</span></a></li>
             </ul>
         </div>
     </div>
