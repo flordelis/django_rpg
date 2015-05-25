@@ -9,13 +9,62 @@
     </ol>
 {% endblock %}
 {% block content %}
-{#    TODO Character View Template#}
-    <h1>{{ character.name }}</h1>
-    <p>Type: {{ character.type }}</p>
-    <p>Race: {{ character.race}}</p>
-    <p>Encounter:</p>
-    <p>CR: {{ character.cr}}</p>
-    <p>HP: {{ character.hp}}</p>
-    <p>Initiative: {{ character.initiative_modifier }}</p>
-    <p></p>
+    {#    TODO Character View Template#}
+    <div class="row">
+        <h1>{{ character.name }}</h1>
+        <div class="row">
+            <div class="col-sm-2">Type:</div>
+            <div class="col-sm-10">{{ character.type }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Race:</div>
+            <div class="col-sm-10">{{ character.race }}</div>
+        </div>
+        {% if character.template %}
+            <div class="row">
+                <div class="col-sm-2">Template:</div>
+                <div class="col-sm-10">{{ character.template }}</div>
+            </div>
+        {%  endif %}
+        {% if character.encounter %}
+            <div class="row">
+                <div class="col-sm-2">Encounter:</div>
+                <div class="col-sm-10">{{ character.encounter }}</div>
+            </div>
+        {%  endif %}
+
+        <div class="row">
+            <div class="col-sm-2">CR:</div>
+            <div class="col-sm-10">{{ character.cr }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">HP:</div>
+            <div class="col-sm-10">{{ character.hp }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Initiative Modifier:</div>
+            <div class="col-sm-10">{{ character.initiative_modifier }}</div>
+        </div>
+        <div class="row">
+            <h2>Relationships</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Character</th>
+                    <th>Relationship</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rc in character.relationships.all %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{% url 'character_view' rc.campaign.pk rc.pk %}">{{ rc }}</a></td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
