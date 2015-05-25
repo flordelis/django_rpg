@@ -11,7 +11,14 @@
 {% block content %}
 {#    TODO Location View Template#}
     <h1>{{ location.name }}</h1>
+    <div class="row">
+        <div class="col-sm-2">Parent Location</div>
+        <div class="col-sm-10"><a href="{% url 'location_view' location.campaign_id location.parent_location_id  %}">{{ location.parent_location}}</a></div>
+        <div class="col-sm-2">Description</div>
+        <div class="col-sm-10">{{ location.description }}</div>
+    </div>
     <h2>Inner Locations</h2>
+
     <table class="table table-strpied">
     <thead><tr><th>#</th><th>Name</th></tr></thead>
     <tbody>
