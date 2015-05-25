@@ -1,0 +1,33 @@
+{% extends "base_index.html" %}
+{% block head_title %} Characters {% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
+        <li><a href="{% url "campaign_view" campaign.pk %}">{{ campaign.name }}</a></li>
+        <li>Characters</li>
+    </ol>
+{% endblock %}
+
+{% block index_head %}
+    <h1>Characters <a href="{% url "character_index" campaign.pk %}"><span class="btn btn-primary pull-right">Create</span></a></h1>
+{%  endblock  %}
+
+{% block object_table %}
+     <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in objects %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'character_view' object.pk %}">{{ object.name }}</a></td>
+                <td><a href="{% url 'character_index' campaign.pk %}"><span class="btn btn-sm btn-danger">Delete</span></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
