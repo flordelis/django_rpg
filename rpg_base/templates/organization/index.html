@@ -1,15 +1,15 @@
 {% extends "base_index.html" %}
-{% block head_title %} Characters {% endblock %}
+{% block head_title %} Organizations {% endblock %}
 {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
         <li><a href="{% url "campaign_view" campaign.pk %}">{{ campaign.name }}</a></li>
-        <li>Characters</li>
+        <li>Organizations</li>
     </ol>
 {% endblock %}
 
 {% block index_head %}
-    <h1>Characters <a href="{% url "character_index" campaign.pk %}"><span class="btn btn-primary pull-right">Create</span></a></h1>
+    <h1>Organizations <a href="{% url "organization_index" campaign.pk %}"><span class="btn btn-primary pull-right">Create</span></a></h1>
 {%  endblock  %}
 
 {% block object_table %}
@@ -24,8 +24,8 @@
         {% for object in objects %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'character_view' object.pk %}">{{ object.name }}</a></td>
-                <td><a href="{% url 'character_index' campaign.pk %}"><span class="btn btn-sm btn-danger">Delete</span></a></td>
+                <td><a href="{% url 'organization_view' campaign.pk object.pk %}">{{ object.name }}</a></td>
+                <td><a href="{% url 'organization_index' campaign.pk %}"><span class="btn btn-sm btn-danger">Delete</span></a></td>
             </tr>
         {% endfor %}
         </tbody>

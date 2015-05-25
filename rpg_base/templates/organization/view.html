@@ -1,21 +1,21 @@
 {% extends "base.html" %}
-{% block head_title %}{{ character.name }}{% endblock %}
+{% block head_title %}{{ organization.name }}{% endblock %}
 {% block breadcrumbs %}
     <ol class="breadcrumb">
         <li><a href="{% url "campaign_index" %}">Campaigns</a></li>
-        <li><a href="{% url "campaign_view" character.campaign.pk %}">{{ character.campaign.name }}</a></li>
-        <li><a href="{% url "character_index" character.campaign.pk %}">Characters</a></li>
-        <li>{{ character.name }}</li>
+        <li><a href="{% url "campaign_view" organization.campaign.pk %}">{{ organization.campaign.name }}</a></li>
+        <li><a href="{% url "organization_index" organization.campaign.pk %}">Organizations</a></li>
+        <li>{{ organization.name }}</li>
     </ol>
 {% endblock %}
 {% block content %}
-{#    TODO Character View Template#}
-    <h1>{{ character.name }}</h1>
-    <p>Type: {{ character.type }}</p>
-    <p>Race: {{ character.race}}</p>
+{#    TODO Organization View Template#}
+    <h1>{{ organization.name }}</h1>
+    <p>Type: {{ organization.type }}</p>
+    <p>Race: {{ organization.race}}</p>
     <p>Encounter:</p>
-    <p>CR: {{ character.cr}}</p>
-    <p>HP: {{ character.hp}}</p>
-    <p>Initiative: {{ character.initiative_modifier }}</p>
+    <p>CR: {{ organization.cr}}</p>
+    <p>HP: {{ organization.hp}}</p>
+    <p>Initiative: {{ organization.initiative_modifier }}</p>
     <p></p>
 {% endblock %}

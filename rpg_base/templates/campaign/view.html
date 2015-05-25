@@ -19,6 +19,7 @@
                 <li role="presentation"><a href="{% url "character_index" campaign.pk %}">Characters <span class="badge">{{ campaign.character_set.count }}</span></a></li>
                 <li role="presentation"><a href="{% url "encounter_index" campaign.pk %}">Encounters <span class="badge">{{ campaign.encounter_set.count }}</span></a></li>
                 <li role="presentation"><a href="{% url "location_index" campaign.pk %}">Locations <span class="badge">{{ campaign.location_set.count }}</span></a></li>
+                <li role="presentation"><a href="{% url "organization_index" campaign.pk %}">Organization <span class="badge">{{ campaign.organization_set.count }}</span></a></li>
             </ul>
         </div>
     </div>
