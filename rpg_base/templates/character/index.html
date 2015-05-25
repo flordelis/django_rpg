@@ -24,7 +24,7 @@
         {% for object in objects %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'character_view' object.pk %}">{{ object.name }}</a></td>
+                <td><a href="{% url 'character_view' campaign.pk object.pk %}">{{ object.name }}</a></td>
                 <td><a href="{% url 'character_index' campaign.pk %}"><span class="btn btn-sm btn-danger">Delete</span></a></td>
             </tr>
         {% endfor %}
