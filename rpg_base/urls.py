@@ -7,10 +7,10 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', campaign.index, name='campaign_index'),
     url(r'^create/$', campaign.create, name='campaign_create'),
-
     url(r'^(?P<campaign_pk>[0-9]+)/$', campaign.view, name='campaign_view'),
+
     url(r'^(?P<campaign_pk>[0-9]+)/character/$', character.index, name='character_index'),
-    url(r'^character/(?P<character_pk>[0-9]+)$', character.view, name='character_view'),
+    url(r'^(?P<campaign_pk>[0-9]+)/character/(?P<character_pk>[0-9]+)$', character.view, name='character_view'),
 
     url(r'^(?P<campaign_pk>[0-9]+)/location/$', location.index, name='location_index'),
     url(r'^(?P<campaign_pk>[0-9]+)/location/(?P<location_pk>[0-9]+)$', location.view, name='location_view'),
