@@ -18,4 +18,7 @@ urlpatterns = [
 
     url(r'^(?P<campaign_pk>[0-9]+)/encounter/$', encounter.index, name='encounter_index'),
     url(r'^(?P<campaign_pk>[0-9]+)/encounter/(?P<encounter_pk>[0-9]+)$', encounter.view, name='encounter_view'),
+
+    url(r'^(?P<campaign_pk>[0-9]+)/organization/$', organization.index, name='organization_index'),
+    url(r'^(?P<campaign_pk>[0-9]+)/organization/(?P<organization_pk>[0-9]+)$', organization.view, name='organization_view'),
 ]
