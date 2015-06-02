@@ -17,6 +17,11 @@ class CharacterLocationRelationshipInline(admin.TabularInline):
     extra = 0
 
 
+class SubLocationAdmin(admin.TabularInline):
+    model = models.Location
+    extra = 0
+
+
 class CharacterClassInline(admin.TabularInline):
     fields = ('dnd_class', 'levels')
     model = models.CharacterClass
@@ -88,10 +93,6 @@ class EncounterAdmin(admin.ModelAdmin):
         CharactersInEncounterTab,
     )
 
-
-class SubLocationAdmin(admin.TabularInline):
-    model = models.Location
-    extra = 0
 
 @admin.register(models.Location)
 class LocationAdmin(admin.ModelAdmin):
