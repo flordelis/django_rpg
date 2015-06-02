@@ -2,15 +2,19 @@ from django.contrib import admin
 import models
 
 
-class CharacterLocationRelationshipTab(admin.TabularInline):
-    model = models.CharacterLocationRelationship
+class OrganizationMemberTab(admin.TabularInline):
+    model = models.OrganizationMember
     extra = 0
 
 
-@admin.register(models.Campaign)
-class CampaignAdmin(admin.ModelAdmin):
-    list_display = ('name', 'user',)
-    fields = ('name', 'description', 'user',)
+class OrganizationLocationTab(admin.TabularInline):
+    model = models.OrganizationLocation
+    extra = 0
+
+
+class CharacterLocationRelationshipInline(admin.TabularInline):
+    model = models.CharacterLocationRelationship
+    extra = 0
 
 
 class CharacterClassInline(admin.TabularInline):
@@ -25,24 +29,36 @@ class CharacterRelationshipInline(admin.TabularInline):
     extra = 0
 
 
+class CharactersInEncounterTab(admin.TabularInline):
+    model = models.CharacterInEncounter
+    extra = 0
+
+
+class CharacterIntroducesEncounterTab(admin.TabularInline):
+    model = models.CharacterIntroducesEncounter
+    extra = 0
+
+
+class EncounterLocationTab(admin.TabularInline):
+    model = models.EncounterLocation
+    extra = 0
+
+
+@admin.register(models.Campaign)
+class CampaignAdmin(admin.ModelAdmin):
+    list_display = ('name', 'user',)
+    fields = ('name', 'description', 'user',)
+
+
 @admin.register(models.Character)
 class CharacterAdmin(admin.ModelAdmin):
     list_display = ('name', 'race', 'campaign', )
     inlines = (
         CharacterClassInline,
         CharacterRelationshipInline,
-        CharacterLocationRelationshipTab,
+        OrganizationMemberTab,
+        CharacterLocationRelationshipInline,
     )
-
-
-class OrganizationMemberTab(admin.TabularInline):
-    model = models.OrganizationMember
-    extra = 0
-
-
-class OrganizationLocationTab(admin.TabularInline):
-    model = models.OrganizationLocation
-    extra = 0
 
 
 @admin.register(models.Organization)
@@ -63,21 +79,6 @@ class DndClassAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
-class CharactersInEncounterTab(admin.TabularInline):
-    model = models.CharacterInEncounter
-    extra = 0
-
-
-class CharacterIntroducesEncounterTab(admin.TabularInline):
-    model = models.CharacterIntroducesEncounter
-    extra = 0
-
-
-class EncounterLocationTab(admin.TabularInline):
-    model = models.EncounterLocation
-    extra = 0
-
-
 @admin.register(models.Encounter)
 class EncounterAdmin(admin.ModelAdmin):
     list_display = ('name', 'campaign', 'is_running', 'round',)
@@ -88,11 +89,17 @@ class EncounterAdmin(admin.ModelAdmin):
     )
 
 
+class SubLocationAdmin(admin.TabularInline):
+    model = models.Location
+    extra = 0
+
 @admin.register(models.Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'description',)
     inlines = (
-        CharacterLocationRelationshipTab,
+        SubLocationAdmin,
+        EncounterLocationTab,
+        CharacterLocationRelationshipInline,
     )
 
 
