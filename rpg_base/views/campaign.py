@@ -6,7 +6,6 @@ from rpg_base.models import Campaign
 
 @login_required
 def index(request):
-    print request.GET
     if "search" in request.GET:
         search_value = request.GET["search"]
         campaigns = Campaign.objects.filter(user=request.user, name__contains=request.GET['search'])
