@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from rpg_base.models import Campaign
+from rpg_base.models import Character
 
-class CampaignSerializer(serializers.ModelSerializer):
+class CharacterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Campaign
-        fields = ('name', 'user', 'description',)
+        model = Character
+        fields = (
+            'name', 'race', 'template', 'cr', 'hp',
+            'initiative_modifier', 'type',
+            'campaign', 'encounter_only'
+
+        )
 
