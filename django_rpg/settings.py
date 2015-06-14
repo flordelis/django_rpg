@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rpg_base',
+    'rpg_api',
     'accounts',
     'crispy_forms',
     'rest_framework'
