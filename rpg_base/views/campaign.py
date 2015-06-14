@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
+from django.http import Http404
 from rpg_base.models import Campaign
 
 
@@ -50,3 +51,6 @@ def create(request):
 
 
     pass
+
+
+

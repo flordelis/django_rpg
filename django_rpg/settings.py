@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'rpg_base',
     'accounts',
     'crispy_forms',
+    'rest_framework'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,3 +110,13 @@ STATICFILES_DIRS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
