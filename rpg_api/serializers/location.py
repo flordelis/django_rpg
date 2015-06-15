@@ -5,6 +5,6 @@ class LocationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Location
         fields = (
-            'name', 'description', 'parent_location', 'campaign',
+            'pk', 'name', 'description', 'parent_location', 'campaign',
         )
 

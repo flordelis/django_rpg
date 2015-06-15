@@ -6,7 +6,7 @@ class CharacterSerializer(serializers.HyperlinkedModelSerializer):
         model = Character
         fields = (
             'name', 'race', 'template', 'cr', 'hp',
-            'initiative_modifier', 'type',
+            'initiative_modifier', 'type', 'pk'
             'campaign', 'encounter_only'
 
         )
