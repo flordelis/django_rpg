@@ -5,4 +5,7 @@ from rest_framework import viewsets
 class OrganizationViewSet(viewsets.ModelViewSet):
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
+    filter_fields = (
+        'name',
+    )
 

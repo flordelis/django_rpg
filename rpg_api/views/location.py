@@ -6,6 +6,6 @@ class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
     filter_fields = (
-        'name', 'parent_location__name', 'parent_location',
+        'name', 'parent_location__name', 'parent_location', 'description', 'campaign', 'campaign__name',
     )
 
