@@ -1,11 +1,8 @@
-from rpg_rest_api.serializers import CampaignSerializer
+from rpg_api.serializers import CampaignSerializer
 from rpg_base.models import Campaign
-from rest_framework import generics
+from rest_framework import viewsets
 
-class CampaignList(generics.ListCreateAPIView):
+class CampaignViewSet(viewsets.ModelViewSet):
     queryset = Campaign.objects.all()
     serializer_class = CampaignSerializer
 
-class CampaignDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Campaign.objects.all()
-    serializer_class = CampaignSerializer
