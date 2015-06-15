@@ -5,4 +5,4 @@ from rest_framework import viewsets
 class CampaignViewSet(viewsets.ModelViewSet):
     queryset = Campaign.objects.all()
     serializer_class = CampaignSerializer
-
+    filter_fields = ('name',)
