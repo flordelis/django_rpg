@@ -5,6 +5,6 @@ class OrganizationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Organization
         fields = (
-            'name', 'description', 'campaign',
+            'pk', 'name', 'description', 'campaign',
         )
 
